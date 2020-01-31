@@ -5,9 +5,9 @@ close all
 clear
 clc
 
-nx = 12;
-ny = 12;
-iteration = 100;
+nx = 20;
+ny = 20;
+iteration = 30;
 
 V = zeros(ny,nx);
 V(:,1) = 1;
@@ -17,10 +17,8 @@ V(:,end) = 0;
 
 for a = 1:iteration
     figure(1)
-    surf(V)
-    [Ex Ey]=gradient(V)
-    figure(2)
-    quiver(Ex,Ey)
+    %surf(V)
+    
    
     for i = 1:ny
         for j = 2:nx-1
@@ -33,8 +31,9 @@ for a = 1:iteration
             end
         end
     end
-    [Ex Ey]=gradient(V)
-    quiver(Ex,Ey)
+    [X Y]=gradient(V)
+    mag=sqrt(X.^2 +Y.^2);
+    surf(mag)
 end
 
 
@@ -49,12 +48,8 @@ V(end,:) = 0;
 
 
 for a = 1:iteration
-    figure(3)
+    figure(2)
     surf(V)
-    [Ex Ey]=gradient(V)
-    figure(4)
-    quiver(Ex,Ey)
-    
     for i = 2:ny-1
         for j = 2:nx-1
             if(i == 1)
